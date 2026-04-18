@@ -28,16 +28,17 @@ class ControllerExercicio {
 
     async Adicionar(req, res){
       try {
-        const { pessoa } = req.body
+        const pessoa = req.body
 
         await servico.Adicionar(pessoa)
         
         res.status(201).json({ message: "Adicionado com sucesso!"});
       } catch (error) {
-        if(error.parent.code === "ER_DUP_ENTRY") {
-          res.status(500).json({ message: "Email já cadastrado!"});
+        if(error.parent && error.parent.code === "ER_DUP_ENTRY") {
+          res.status(409).json({ message: "Email já cadastrado!"});
+        } else {
+          res.status(400).json({ message: error.message});
         }
-        res.status(500).json({ message: error.parent.message || error.message});
       }
     }
 

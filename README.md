@@ -35,4 +35,22 @@ A qualidade do seu trabalho será avaliada com base na abrangência dos testes, 
 
 # Mensagem de esperança
 
-Boa sorte! (=
+Boa sorte!
+
+
+
+Parte 2
+
+Finalize os CTs
+Entenda o Banco de Dados;
+Crie o Banco de Dados;
+- Banco criado
+Execute npm i;
+
+Abra o postman e cria os arquivos de endpoints;
+
+Inicialize a aplicação;
+Execute os testes;
+Anote os bugs e sugestões de Melhoria;
+Acabou? Sim -> passo 10 | - Não -> passo 6
+Só corrija após finalizar TUDO (Se possível);
