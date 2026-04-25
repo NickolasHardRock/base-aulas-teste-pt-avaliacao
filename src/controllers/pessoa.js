@@ -44,14 +44,19 @@ class ControllerExercicio {
 
     async Alterar(req, res){
       try {
+        
         const id = req.params.id
-        const nome = req.body.nome
-    
-        await servico.Alterar(id, nome)
+        // Correção: Controller alterar req.body.nome para req.body
+        // Sugestão: Controller trocar o nome da variavel para pessoa  
+        const pessoa = req.body
+        console.log(req.body)
+        await servico.Alterar(id, pessoa)
           
         res.status(200).json({ message: "Alterado com sucesso!"});
       } catch (error) {
-        res.status(500).json({ message: error.errors.message || error.message});
+        // Correção : Controller errors esta sendo chamado de maneira incorreta
+        console.log(error)
+        res.status(500).json({ message:  error.message});
         
       }
     }

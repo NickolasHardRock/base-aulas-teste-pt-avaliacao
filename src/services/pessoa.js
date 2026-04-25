@@ -32,8 +32,8 @@ class ServicoExercicio {
       if(!id || isNaN(id)) {
         throw new Error("Favor corretamente o id.")
       }
-
-      return repositorio.Adicionar(pessoa)
+      // Correção: Service alterar pessoa esta chamando adicionar pessoa inves de alterar
+      return repositorio.Alterar(id,pessoa)
     }
 
     async Deletar(id){
