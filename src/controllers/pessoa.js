@@ -45,9 +45,9 @@ class ControllerExercicio {
     async Alterar(req, res){
       try {
         const id = req.params.id
-        const nome = req.body.nome
+        const pessoa = req.body.nome
     
-        await servico.Alterar(id, nome)
+        await servico.Alterar(id, pessoa)
           
         res.status(200).json({ message: "Alterado com sucesso!"});
       } catch (error) {
@@ -56,7 +56,7 @@ class ControllerExercicio {
       }
     }
 
-    async Deletar(req, res){
+    async Deletar(req, res){ 
       try {
         const id = req.params.id
 
@@ -64,11 +64,13 @@ class ControllerExercicio {
           
         res.status(200).json({ message: "Deletado com sucesso!"});
       } catch (error) {
-        res.status(500).json({ message: error.message});
-        
+        if(error.message.includes("não encontrado")) { // ticket 17
+          res.status(404).json({ message: error.message});
+        } else {
+          res.status(500).json({ message: error.message});
+        }
       }
     }
-
 }
 
 module.exports = ControllerExercicio

@@ -27,13 +27,16 @@ class RepositorioExercicio {
     }
 
     async Deletar(id){
-        return Pessoa.destroy({
+        const deletado = await Pessoa.destroy({
             where: {
                 id
             }
         })
-    }
-
+        if(deletado === 0) {
+            throw new Error("Pessoa não encontrado.")
+        }
+        return deletado
+    }    
 }
 
 module.exports = RepositorioExercicio
