@@ -8,6 +8,7 @@ class ControllerExercicio {
         const id = req.params.id
 
         const result = await servico.PegarUm(id)
+        console.log(result)
         
         res.status(200).json(result);
       } catch (error) {
