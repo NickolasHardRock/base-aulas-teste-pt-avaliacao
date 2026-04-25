@@ -8,6 +8,7 @@ class ControllerExercicio {
         const id = req.params.id
 
         const result = await servico.PegarUm(id)
+        console.log(result)
         
         res.status(200).json(result);
       } catch (error) {
@@ -28,29 +29,35 @@ class ControllerExercicio {
 
     async Adicionar(req, res){
       try {
-        const { pessoa } = req.body
+        // retirar {pessoa} e substituir por  const pessoa
+        const  pessoa  = req.body
 
         await servico.Adicionar(pessoa)
         
         res.status(201).json({ message: "Adicionado com sucesso!"});
       } catch (error) {
         if(error.parent.code === "ER_DUP_ENTRY") {
-          res.status(500).json({ message: "Email já cadastrado!"});
+          res.status(409).json({ message: "Email já cadastrado!"});
         }
-        res.status(500).json({ message: error.parent.message || error.message});
+        res.status(400).json({ message: error.parent.message || error.message});
       }
     }
 
     async Alterar(req, res){
       try {
+        
         const id = req.params.id
-        const nome = req.body.nome
-    
-        await servico.Alterar(id, nome)
+        // Correção: Controller alterar req.body.nome para req.body
+        // Sugestão: Controller trocar o nome da variavel para pessoa  
+        const pessoa = req.body
+        console.log(req.body)
+        await servico.Alterar(id, pessoa)
           
         res.status(200).json({ message: "Alterado com sucesso!"});
       } catch (error) {
-        res.status(500).json({ message: error.errors.message || error.message});
+        // Correção : Controller errors esta sendo chamado de maneira incorreta
+        console.log(error)
+        res.status(500).json({ message:  error.message});
         
       }
     }

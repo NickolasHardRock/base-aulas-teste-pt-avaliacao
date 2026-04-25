@@ -16,7 +16,11 @@ app.listen(PORT, () => {
   //   if (error) {
   //     console.error("Erro ao inicializar:", error);
   //   }
+<<<<<<< HEAD
   // });
+=======
+  // })
+>>>>>>> 3c599f6456152b0d7999d152803459cd507cc976
 
   console.log(`Servidor rodando na porta ${PORT}`);
 });
