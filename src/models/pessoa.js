@@ -4,7 +4,8 @@ const sequelize = require('../database.js');
 const Pessoa = sequelize.define('pessoas', {
     id: {
         primaryKey: true,
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        autoIncrement: true
         //falta adicionar o autoIncremental
     },
     nome: {
@@ -19,7 +20,7 @@ const Pessoa = sequelize.define('pessoas', {
     senha: {
         type: DataTypes.STRING,
         // trocar false por true
-        allowNull: false,
+        allowNull: true,
     },
 }, {
     createdAt: false,

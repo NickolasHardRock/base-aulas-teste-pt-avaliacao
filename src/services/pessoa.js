@@ -6,8 +6,9 @@ class ServicoExercicio {
   async PegarUm(id) {
 
 
-
-    if (!id || isNaN(id)) {
+    //Sugestão de melhoria adicionar uma verificação de numeros negativos em PegarUm
+    //Sugestão de melhoria adicionar uma verificação quando não for informado id
+    if (!id || isNaN(id) || id < -1 || id == null) {
       throw new Error("Favor corretamente o id.")
     }
     // Sugestão de melhoria adicionar um Erro quando o dado não for encontrado
@@ -19,8 +20,15 @@ class ServicoExercicio {
     }
     return repositorio.PegarUm(id)
   }
-
+  // Sugestão: Adicionar mensagem de erro caso o banco esteja vazio 
   async PegarTodos() {
+
+    const result = await repositorio.PegarTodos()
+    console.log(result)
+    if(result.length == 0){
+      throw new Error("Dados não encontrado")
+    }
+
     return repositorio.PegarTodos()
   }
 

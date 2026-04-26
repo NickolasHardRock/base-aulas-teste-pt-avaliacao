@@ -6,18 +6,15 @@ class ControllerExercicio {
     async PegarUm(req, res){
       try {
         const id = req.params.id
-
         const result = await servico.PegarUm(id)
-        console.log(result)
-        
         res.status(200).json(result);
       } catch (error) {
-        console.log(error)
+        
         res.status(500).json({ message: error.message}); 
       }
     }
-
-    async PegarTodos(_, res){
+    // Correção: Arrumar os parametros de req e res desta função
+    async PegarTodos(req, res){
       try {
         const result = await servico.PegarTodos()
 
