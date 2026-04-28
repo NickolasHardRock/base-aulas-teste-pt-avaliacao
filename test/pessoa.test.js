@@ -10,10 +10,7 @@ describe('Testes do primeiro exercício', () => {
       console.info('Iniciando TDD com jest!');
    });
 
-   // Executado após TODOS os testes
-   afterAll(() => {
-      console.info('Encerrados os testes');
-   });
+  
 
    it('Should add a name', () => {
       const qtde = servico.PegarTodos().length
@@ -22,5 +19,10 @@ describe('Testes do primeiro exercício', () => {
       
       expect(qtdeAfter).toBe(qtde + 1);
    })
+
+    // Executado após TODOS os testes
+   afterAll(() => {
+      console.info('Encerrados os testes');
+   });
 
 })
