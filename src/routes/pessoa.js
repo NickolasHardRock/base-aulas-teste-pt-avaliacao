@@ -5,8 +5,6 @@ const router = express.Router();
 
 const controllers = new ControllerExercicio()
 
-// Sugestão de melhoria: Padronizar os caminhos dos endpoint
-
 router.get("/api/pessoas/", controllers.PegarTodos);
 router.get("/api/pessoa/:id", controllers.PegarUm);
 router.post("/api/pessoa", controllers.Adicionar);
