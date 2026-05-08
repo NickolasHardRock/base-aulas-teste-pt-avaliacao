@@ -37,19 +37,32 @@ class ServicoExercicio {
       throw new Error("Favor preencher o pessoa.")
     } else if (!pessoa.nome) {
       throw new Error("Favor preencher o nome.")
+      } else if (pessoa.nome.length < 3) {
+    throw new Error("O nome deve ter no mínimo 3 caracteres.")
+      } else if (/\d/.test(pessoa.nome)) {
+    throw new Error("O nome não pode conter números.")
     } else if (!pessoa.email) {
       throw new Error("Favor preencher o email.")
     } else if (!pessoa.senha) {
       throw new Error("Favor preencher o senha.")
+    }else if (pessoa.senha.length < 8) {
+    throw new Error("A senha deve ter no mínimo 8 caracteres.")
     }
-
     return repositorio.Adicionar(pessoa)
   }
 
   async Alterar(id, pessoa) {
     if (!id || isNaN(id)) {
       throw new Error("Favor corretamente o id.")
-    }
+    }else if (pessoa.nome && /\d/.test(pessoa.nome)) {
+    throw new Error("O nome não pode conter números.")
+  }else if (pessoa.nome && pessoa.nome.length < 3) {
+    throw new Error("O nome deve ter no mínimo 3 caracteres.")
+  }else if (pessoa.senha && pessoa.senha.length < 8) {
+    throw new Error("A senha deve ter no mínimo 8 caracteres.")
+  } else if (/^(.)\1*$/.test(pessoa.senha)) {
+    throw new Error("A senha não pode conter apenas um caractere repetido.")
+  }
     // Correção: Service alterar pessoa esta chamando adicionar pessoa inves de alterar
     return repositorio.Alterar(id, pessoa)
   }
